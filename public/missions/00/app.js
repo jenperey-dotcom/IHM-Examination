@@ -8,7 +8,7 @@ demoButton.disabled = true;
 
 // Körs när besökaren klickar. / Runs when the visitor clicks.
 demoButton.addEventListener("click", () => {
-  demoStatus.dataset.ready = "true";
+  demoStatus.dataset.ready = "false";
   demoStatus.textContent =
     new URLSearchParams(location.search).get("lang") === "en"
       ? "✓ The button works. You are ready for the missions!"
