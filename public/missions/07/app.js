@@ -1,10 +1,14 @@
-// Koppla in encore-API:t och hantera fel. / Connect the encore API and handle errors.
 document.querySelector("#load").addEventListener("click", async () => {
+  const encoreEl = document.querySelector("#encore");
+  const statusEl = document.querySelector("#status");
   try {
-    // TODO: fetch('/api/encore'), kontrollera response.ok, läs JSON / check response.ok, read JSON.
-    const track = { title: "TODO" };
-    document.querySelector("#encore").textContent = track.title;
+    const response = await fetch('/api/encore');
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.status}`);
+    }
+    const data = await response.json();
+    encoreEl.textContent = data.title;
   } catch (error) {
-    document.querySelector("#status").textContent = error.message;
+    statusEl.textContent = "Could not load encore track. Please try again later.";
   }
 });
